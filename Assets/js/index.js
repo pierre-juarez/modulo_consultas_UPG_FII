@@ -1,13 +1,12 @@
 function mostrarNota(){
-    $(".card-notice").hide(500);
-    let cod_postulante = $("#txtCodigoPostulante").val();
 
+    let cod_postulante = $("#txtCodigoPostulante").val();
+    $(".card-notice").hide(500);
         
     if(cod_postulante.length === 5 && cod_postulante !== ""){       
         validaNota(cod_postulante);
     }else{     
-        mostrarAlerta('El código de postulante debe tener 5 dígitos','error','Oh, cierto');
-        // $(".card-notice").hide(500);
+        mostrarAlerta('El código de postulante debe tener 5 dígitos','error','Oh, cierto');        
         $("#divMuestraCard .cards-information").hide(500);
     }
 
