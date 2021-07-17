@@ -29,6 +29,41 @@ function printCard(data){
     let card, temaColor;
 
     temaColor = data.admision_estado === "INGRESÓ" ? "green" : "red" ;
+
+    if(data.admision_nota_maestria === "0" ||data.admision_nota_maestria === null){ 
+        formatoNota = ` <div class="items-center lg:flex">              
+                            <div class="w-full lg:w-1/2 my-1">
+                                <p class="mt-2 text-gray-600 dark:text-gray-300 font-medium">Eval. de Aptitud: ${data.admision_nota_aptitud}</p>
+                            </div>            
+                            <div class="w-full lg:w-1/2 my-1">
+                                <p class="mt-2 text-gray-600 dark:text-gray-300 font-medium">Eval. de Aptitud - Escala 25(A): ${data.admision_nota_aptitud_escalada === null ? "—" : data.admision_nota_aptitud_escalada}</p>
+                            </div>            
+                        </div>
+                     
+                        <div class="items-center lg:flex">
+                            <div class="w-full lg:w-1/2 my-1">
+                                <p class="mt-2 text-gray-600 dark:text-gray-300 font-medium">Eval. de Conocimientos: ${data.admision_nota_conocimientos === null ? "—" : data.admision_nota_conocimientos}</p>
+                            </div>
+                            <div class="w-full lg:w-1/2 my-1">
+                                <p class="mt-2 text-gray-600 dark:text-gray-300 font-medium">Eval. de Conocimientos - Escala 25(C): ${data.admision_nota_conocimientos_escalada === "0" ? "—" : data.admision_nota_conocimientos_escalada}</p>
+                            </div>
+                        </div>`;
+    }else{
+        formatoNota = ` <div class="items-center lg:flex">              
+                            <div class="w-full flex justify-start sm:justify-center my-1">
+                                <p class="mt-2 text-gray-600 dark:text-gray-300 font-medium">Eval. de Aptitud: ${data.admision_nota_aptitud}</p>
+                            </div>                                                  
+                        </div>
+
+                        <div class="items-center lg:flex">              
+                            <div class="w-full lg:w-1/2 my-1">
+                                <p class="mt-2 text-gray-600 dark:text-gray-300 font-medium">Eval. de Pre-Maestría: ${data.admision_nota_maestria === null || data.admision_nota_maestria === "0" ? "—" : data.admision_nota_maestria}</p>
+                            </div>            
+                            <div class="w-full lg:w-1/2 my-1">
+                                <p class="mt-2 text-gray-600 dark:text-gray-300 font-medium">Eval. de Pre-Maestría - Escala 50(B): ${ data.admision_nota_maestria_escalada === "0" ? "—" : data.admision_nota_maestria_escalada}</p>
+                            </div>            
+                        </div>`;
+    }
     
     card = `<div class="cards-information max-w-2xl px-8 py-4 my-4 mx-10 bg-${temaColor}-200 rounded-lg shadow-md dark:bg-gray-800 sm:mx-auto" style="display: none;">
 
@@ -44,33 +79,8 @@ function printCard(data){
                         <p class="mb-4 text-gray-700 font-bold">${data.maestria_nombre}</p>
                     </div>
         
-                    
-                    <div class="items-center lg:flex">              
-                        <div class="w-full lg:w-1/2 my-1">
-                            <p class="mt-2 text-gray-600 dark:text-gray-300 font-medium">Eval. de Aptitud: ${data.admision_nota_aptitud}</p>
-                        </div>            
-                        <div class="w-full lg:w-1/2 my-1">
-                            <p class="mt-2 text-gray-600 dark:text-gray-300 font-medium">Eval. de Aptitud - Escala 25(A): ${data.admision_nota_aptitud_escalada === null ? "—" : data.admision_nota_aptitud_escalada}</p>
-                        </div>            
-                    </div>
-
-                    <div class="items-center lg:flex">              
-                        <div class="w-full lg:w-1/2 my-1">
-                            <p class="mt-2 text-gray-600 dark:text-gray-300 font-medium">Eval. de Pre-Maestría: ${data.admision_nota_maestria === null || data.admision_nota_maestria === "0" ? "—" : data.admision_nota_maestria}</p>
-                        </div>            
-                        <div class="w-full lg:w-1/2 my-1">
-                            <p class="mt-2 text-gray-600 dark:text-gray-300 font-medium">Eval. de Pre-Maestría - Escala 50(B): ${ data.admision_nota_maestria_escalada === "0" ? "—" : data.admision_nota_maestria_escalada}</p>
-                        </div>            
-                    </div>
-
-                    <div class="items-center lg:flex">
-                        <div class="w-full lg:w-1/2 my-1">
-                            <p class="mt-2 text-gray-600 dark:text-gray-300 font-medium">Eval. de Conocimientos: ${data.admision_nota_conocimientos === null ? "—" : data.admision_nota_conocimientos}</p>
-                        </div>
-                        <div class="w-full lg:w-1/2 my-1">
-                            <p class="mt-2 text-gray-600 dark:text-gray-300 font-medium">Eval. de Conocimientos - Escala 25(C): ${data.admision_nota_conocimientos_escalada === "0" ? "—" : data.admision_nota_conocimientos_escalada}</p>
-                        </div>
-                    </div>            
+                  ${formatoNota}
+                         
                 </div>           
 
                 <hr class="my-2 border-${temaColor}-800 dark:border-gray-800">
