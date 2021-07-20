@@ -11,6 +11,6 @@ date_default_timezone_set('America/Lima');
 const HOST = "localhost";
 const USER = "root";
 const PASSWORD = "";
-const DATABASE = "bd_demo_admision";
+const DATABASE = "bd_admision_upg";
 
  ?>
