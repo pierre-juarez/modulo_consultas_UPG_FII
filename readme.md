@@ -6,11 +6,11 @@ Te dejo aquí una demo: <a href="https://upgindustrial.unmsm.edu.pe/admision_upg
 
 ## Desktop
 
-![Versión Desktop](src/img/screenshots/desktop.png?raw=true "Versión Desktop")
+![Versión Desktop](Assets/img/screenshots/desktop.png?raw=true "Versión Desktop")
 
 ## Mobile
 
-![Versión Mobile](src/img/screenshots/mobile.png?raw=true "Versión Mobile")
+![Versión Mobile](Assets/img/screenshots/mobile.png?raw=true "Versión Mobile")
 
 ## Créditos
 
