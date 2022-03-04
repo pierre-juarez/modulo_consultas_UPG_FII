@@ -32,7 +32,7 @@
                         <p class="mt-4 text-gray-600 dark:text-gray-400">Digite su <span class="font-medium text-green-500"> código de postulante</span> para visualizar el resultado de su proceso.</p>
 
                         <div class="flex flex-col mt-8 space-y-3 lg:space-y-0 lg:flex-row">
-                            <input id="txtCodigoPostulante" name="txtCodigoPostulante" type="text" class="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-green-500 dark:focus:border-green-500 focus:outline-none focus:ring mr-2 number" placeholder="12345" maxlength="5">
+                            <input id="txtCodigoPostulante" name="txtCodigoPostulante" type="text" class="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-green-500 dark:focus:border-green-500 focus:outline-none focus:ring mr-2 number" placeholder="123456" maxlength="6">
                             
                             <button onclick="mostrarNota();" class="flex items-center px-2 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-600 rounded-md dark:bg-gray-800 hover:bg-blue-500 dark:hover:bg-gray-700 focus:outline-none focus:bg-blue-500 dark:focus:bg-gray-700">
                               <svg class="w-5 h-5 mx-1" aria-hidden="true" focusable="false" data-prefix="far" data-icon="clipboard" class="svg-inline--fa fa-clipboard fa-w-12" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
