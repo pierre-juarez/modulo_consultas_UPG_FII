@@ -27,7 +27,7 @@
             <div class="items-center lg:flex">
                 <div class="w-full lg:w-1/2">
                     <div class="lg:max-w-lg">
-                        <h1 class="text-2xl font-semibold text-gray-800 dark:text-white lg:text-3xl">Resultados UPG <span class="text-green-500">Proceso de Admisión 2021-II</span></h1>
+                        <h1 class="text-2xl font-semibold text-gray-800 dark:text-white lg:text-3xl">Resultados UPG <span class="text-green-500">Proceso de Admisión <span id="spnInformacionSemestre">2021-II</span></span></h1>
 
                         <p class="mt-4 text-gray-600 dark:text-gray-400">Digite su <span class="font-medium text-green-500"> código de postulante</span> para visualizar el resultado de su proceso.</p>
 
@@ -69,10 +69,10 @@
             <hr class="my-2 dark:border-gray-500">
 
             <div class="sm:flex sm:items-center sm:justify-between">
-                <p class="text-sm text-gray-400">© Copyright 2021. Todos los derechos reservados a <a href="https://industrial.unmsm.edu.pe/" target="_blank" class="text-bold text-green-700 hover:text-green-800">UEI - FII</a> </p>
+                <p class="text-sm text-gray-400">© Copyright <?= getFechaCopyright(2021); ?>. Todos los derechos reservados a <a href="https://industrial.unmsm.edu.pe/" target="_blank" class="text-bold text-green-700 hover:text-green-800">UEI - FII</a> </p>
 
                 <div class="flex mt-3 -mx-2 sm:mt-0">
-                    <a href="https://www.facebook.com/Industrial.UNMSM.Oficial" target="_blank" class="mx-2 text-gray-400 hover:text-gray-500 dark:hover:text-gray-300"
+                    <a href="https://facebook.com/informaticaFIIUNMSM/" target="_blank" class="mx-2 text-gray-400 hover:text-gray-500 dark:hover:text-gray-300"
                         aria-label="Facebook">
                         <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
@@ -98,5 +98,6 @@
 <script src="<?=base_url(); ?>assets/js/sweetalert2/sweetalert2.all.min.js"></script>
 <script src="<?= base_url();?>assets/js/utilitario.js"></script>
 <script src="<?= base_url();?>assets/js/index.js"></script>
+<script src="<?= base_url();?>assets/js/public.js"></script>
 </body>
 </html>

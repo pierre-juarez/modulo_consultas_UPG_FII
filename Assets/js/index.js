@@ -36,12 +36,33 @@ function printCard(data) {
     cardInformacion,
     formatoInfo;
 
-  temaColor = data.admision_estado === "INGRESÓ" ? "green" : "red";
+  const {
+    admision_estado,
+    admision_nota_maestria,
+    admision_nota_maestria_escalada,
+    admision_nombres,
+    admision_ape_paterno,
+    admision_ape_materno,
+    admision_nota_conocimientos,
+    admision_nota_conocimientos_escalada,
+    admision_nota_conocimientos_final,
+    admision_codigo_postulante,
+    admision_orden_merito,
+    maestria_nombre,
+    admision_nota_curricular,
+    admision_nota_entrevista,
+    admision_resultado,
+  } = data;
+
+  temaColor = admision_estado === "INGRESÓ" ? "green" : "red";
 
   modalidad =
-    data.admision_nota_maestria === "0" || data.admision_nota_maestria === null
+    admision_nota_maestria === "0" || admision_nota_maestria === null
       ? "Regular"
-      : "Pre-Maestría";
+      : "Pre-Maestrìa";
+
+  nombres_completos =
+    `${admision_nombres} ${admision_ape_paterno} ${admision_ape_materno}`.toUpperCase();
 
   formatoModalidad = `<div class="items-center lg:flex">              
                             <div class="w-full flex justify-start sm:justify-center my-1">
@@ -51,30 +72,31 @@ function printCard(data) {
 
   formatoInfo = `<div class="mx-3 my-1">
                         <span class="font-semibold text-blue-500 dark:text-blue-400">Información</span>                                
-                        <p class="text-sm text-gray-600 dark:text-gray-200">Para el cálculo del RESULTADO FINAL se consideró lo siguiente: <br> <br>
-                           
-                            <span> ✓ E = D en Escala de 20 pts.</span><br><br>
-                            <span> ✓ RESULTADO FINAL = D + E + F </span><br><br>                           
-                            <span> ✓ Solo tendrán derecho a la evaluación del currículum vítae y a la entrevista personal, los postulantes que obtengan 27,5 o más puntos en el examen de conocimientos (D). </span><br><br>
-                            <span> ✓ Las vacantes se cubrirán en estricto orden de mérito entre los que obtengan la nota mínima aprobatoria de 55 puntos en el resultado final. </span>
+                        <p class="text-sm text-gray-600 dark:text-gray-200">
+                            <span> ✓ Examen de aptitud máximo 50 puntos. </span><br>
+                            <span id="spnOpcionalMaestria"> ✓ Para los postulantes que siguieron la pre maestría: la nota de su examen de aptitud es la nota de la pre-maestría en escala de 50. <br></span>
+                            <span> ✓ Solo aquellos que obtengan 27.5 puntos o más en el examen de aptitud continúan con el resto de evaluaciones. </span><br>
+                            <span> ✓ Evaluación curricular: máximo 30 puntos. </span><br>
+                            <span> ✓ Entrevista máximo 20 puntos. </span><br>
+                            <span>✓ El resultado final es la sumatoria de todas las evaluaciones rendidas.</span> <br> 
+                            <span> ✓ Se ingresa por órden de mérito entre los que obtengan un puntaje total igual o mayor a 55 puntos. </span>
                         </p>                
                     </div>`;
 
   if (modalidad === "Regular") {
     formatoNota = ` <div class="items-center lg:flex">
                             <div class="w-full lg:w-1/2 my-1">
-                                <p class="mt-2 text-gray-600 dark:text-gray-300 font-medium">Eval. de Conocimientos UPG: ${
-                                  data.admision_nota_conocimientos === null
+                                <p class="mt-2 text-gray-600 dark:text-gray-300 font-medium">Eval. de Aptitud UPG: ${
+                                  admision_nota_conocimientos === null
                                     ? "—"
-                                    : data.admision_nota_conocimientos
+                                    : admision_nota_conocimientos
                                 }</p>
                             </div>
                             <div class="w-full lg:w-1/2 my-1">
-                                <p class="mt-2 text-gray-600 dark:text-gray-300 font-medium">Eval. de Conocimientos UPG - Escala 25(C): ${
-                                  data.admision_nota_conocimientos_escalada ===
-                                  "0"
+                                <p class="mt-2 text-gray-600 dark:text-gray-300 font-medium">Eval. de Aptitud UPG - Escala 25: ${
+                                  admision_nota_conocimientos_escalada === "0"
                                     ? "—"
-                                    : data.admision_nota_conocimientos_escalada
+                                    : admision_nota_conocimientos_escalada
                                 }</p>
                             </div>
                         </div>`;
@@ -82,17 +104,17 @@ function printCard(data) {
     formatoNota = ` <div class="items-center lg:flex">              
                             <div class="w-full lg:w-1/2 my-1">
                                 <p class="mt-2 text-gray-600 dark:text-gray-300 font-medium">Eval. de Pre-Maestría: ${
-                                  data.admision_nota_maestria === null ||
-                                  data.admision_nota_maestria === "0"
+                                  admision_nota_maestria === null ||
+                                  admision_nota_maestria === "0"
                                     ? "—"
-                                    : data.admision_nota_maestria
+                                    : admision_nota_maestria
                                 }</p>
                             </div>            
                             <div class="w-full lg:w-1/2 my-1">
-                                <p class="mt-2 text-gray-600 dark:text-gray-300 font-medium">Eval. de Pre-Maestría - Escala 50(B): ${
-                                  data.admision_nota_maestria_escalada === "0"
+                                <p class="mt-2 text-gray-600 dark:text-gray-300 font-medium">Eval. de Pre-Maestría - Escala 50: ${
+                                  admision_nota_maestria_escalada === "0"
                                     ? "—"
-                                    : data.admision_nota_maestria_escalada
+                                    : admision_nota_maestria_escalada
                                 }</p>
                             </div>            
                         </div>`;
@@ -113,25 +135,15 @@ function printCard(data) {
   card = `<div class="cards-information max-w-2xl px-8 py-4 my-4 mx-10 bg-${temaColor}-200 rounded-lg shadow-md dark:bg-gray-800 sm:mx-auto" style="display: none;">
 
                 <div class="grid items-center justify-between sm:flex">
-                    <span class="text-md font-bold text-gray-600 dark:text-gray-400">COD: ${
-                      data.admision_codigo_postulante
-                    }</span>            
-                    <a class="px-3 py-1 text-sm font-bold text-gray-100 transition-colors duration-200 transform border border-${temaColor}-800 text-${temaColor}-800 rounded cursor-pointer my-2 sm:mt-0">ORDEN DE MÉRITO: N°${
-    data.admision_orden_merito
-  }</a>
+                    <span class="text-md font-bold text-gray-600 dark:text-gray-400">COD: ${admision_codigo_postulante}</span>            
+                    <a class="px-3 py-1 text-sm font-bold text-gray-100 transition-colors duration-200 transform border border-${temaColor}-800 text-${temaColor}-800 rounded cursor-pointer my-2 sm:mt-0">ORDEN DE MÉRITO: N°${admision_orden_merito}</a>
                 </div>
                
                 <div class="mt-2">  
 
                     <div class="grid justify-center sm:justify-start">
-                        <p  class="text-2xl font-bold text-gray-700 dark:text-white dark:hover:text-gray-200">${
-                          data.admision_nombres
-                        } ${data.admision_ape_paterno} ${
-    data.admision_ape_materno
-  }</p>
-                        <p class="mb-4 text-gray-700 font-bold">${
-                          data.maestria_nombre
-                        }</p>
+                        <p  class="text-2xl font-bold text-gray-700 dark:text-white dark:hover:text-gray-200">${nombres_completos}</p>
+                        <p class="mb-4 text-gray-700 font-bold">${maestria_nombre}</p>
                     </div>                  
 
                   ${formatoModalidad}
@@ -143,33 +155,33 @@ function printCard(data) {
                 <div class="mt-2">            
                     <div class="items-center lg:flex">
                         <div class="w-full lg:w-1/2 my-1">
-                            <p class="mt-2 text-gray-600 dark:text-gray-300 font-medium">Eval. de Conocimientos (D): ${
-                              data.admision_nota_conocimientos_final === null
+                            <p class="mt-2 text-gray-600 dark:text-gray-300 font-medium">Eval. de Aptitud: ${
+                              admision_nota_conocimientos_final === null
                                 ? "0"
-                                : data.admision_nota_conocimientos_final
+                                : admision_nota_conocimientos_final
                             }</p>
                         </div>
                         <div class="w-full lg:w-1/2 my-1">
-                            <p class="mt-2 text-gray-600 dark:text-gray-300 font-medium">Evaluación de CV (F): ${
-                              data.admision_nota_curricular === null
+                            <p class="mt-2 text-gray-600 dark:text-gray-300 font-medium">Evaluación de CV: ${
+                              admision_nota_curricular === null
                                 ? "0"
-                                : data.admision_nota_curricular
+                                : admision_nota_curricular
                             }</p>
                         </div>            
                     </div>
                     <div class="items-center lg:flex">
                         <div class="w-full lg:w-1/2 my-1">
-                            <p class="mt-2 text-gray-600 dark:text-gray-300 font-medium">Entrevista Personal(E): ${
-                              data.admision_nota_entrevista === null
+                            <p class="mt-2 text-gray-600 dark:text-gray-300 font-medium">Entrevista Personal: ${
+                              admision_nota_entrevista === null
                                 ? "0"
-                                : data.admision_nota_entrevista
+                                : admision_nota_entrevista
                             }</p>
                         </div>
                         <div class="w-full lg:w-1/2 my-1">
                             <p class="mt-2 text-gray-600 dark:text-gray-300 font-bold uppercase">RESULTADO FINAL: ${
-                              data.admision_resultado === null
+                              admision_resultado === null
                                 ? "0"
-                                : data.admision_resultado
+                                : admision_resultado
                             }</p>
                         </div>
                     </div>            
@@ -177,9 +189,7 @@ function printCard(data) {
 
                 <div class="items-center lg:flex">
                     <div class="w-full my-2 flex justify-center mt-8 mb-4">
-                        <p class="px-3 py-1 text-lg font-bold text-gray-100 transition-colors duration-200 transform bg-${temaColor}-800 rounded">ESTATUS <span class="hidden sm:inline">DEL POSTULANTE</span> : ${
-    data.admision_estado
-  } <span class="hidden sm:inline">AL PROGRAMA</span></p>
+                        <p class="px-3 py-1 text-lg font-bold text-gray-100 transition-colors duration-200 transform bg-${temaColor}-800 rounded">ESTATUS <span class="hidden sm:inline">DEL POSTULANTE</span> : ${admision_estado} <span class="hidden sm:inline">AL PROGRAMA</span></p>
                     </div>
                 </div>
                 
@@ -190,4 +200,10 @@ function printCard(data) {
   $("#cardInformacion .card-notice").show(500);
   $("#divMuestraCard .cards-information").show(500);
   $("#txtCodigoPostulante").val("");
+
+  sleep(0.3, () => {
+    modalidad === "Regular"
+      ? $("#spnOpcionalMaestria").css("display", "none")
+      : $("#spnOpcionalMaestria").css("display", "block");
+  });
 }

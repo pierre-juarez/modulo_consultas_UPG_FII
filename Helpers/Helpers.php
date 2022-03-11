@@ -12,4 +12,9 @@ function carpeta(){
   return CARPETA_ACTUAL;
 }
 
+function getFechaCopyright($year_creation){
+  $year_current = date("Y");
+  return ($year_creation === $year_current) ? $year_creation : $year_creation ."-".$year_current;
+}
+
 ?>
